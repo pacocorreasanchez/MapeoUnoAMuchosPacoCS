@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="es.albarregas.beans.Libro" table="libros">
+        <id column="idLibro" name="idLibro">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="titulo">
+            <column length="30" name="titulo" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>
