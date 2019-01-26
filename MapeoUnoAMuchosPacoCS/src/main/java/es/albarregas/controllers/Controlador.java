@@ -41,9 +41,6 @@ public class Controlador extends HttpServlet {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IGenericoDAO gdao = daof.getGenericoDAO();
         
-        Libro libro = new Libro();
-        PersonaList persona = new PersonaList();
-        
         HttpSession sesion = request.getSession();
         String url = null;
         
@@ -53,13 +50,11 @@ public class Controlador extends HttpServlet {
                 url = "JSP/subIndex.html";
                 break;
             case "delete":
-                /*puerto = (Puerto) gdao.getOne(puerto.getClass(), Long.parseLong(request.getParameter("registro")));
-                gdao.delete(puerto);*/
+                eliminar(sesion, gdao, request);
                 url = "JSP/subIndex.html";
                 break;
             case "update":
-                /*puerto = (Puerto) gdao.getOne(puerto.getClass(), Long.parseLong(request.getParameter("registro")));
-                request.setAttribute("puerto", puerto);*/
+                actualizar(sesion, gdao, request);
                 url = "JSP/formularioActualizar.jsp";
                 break;
                 
@@ -108,6 +103,32 @@ public class Controlador extends HttpServlet {
             gdao.add(persona);
         }
     }
+    
+    public void eliminar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+        PersonaList personaList = new PersonaList();
+        PersonaSet personaSet = new PersonaSet();
+        if(sesion.getAttribute("tipoModelo").equals("list")){
+            personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+            gdao.delete(personaList);
+        }else{
+            personaSet = (PersonaSet)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+            gdao.delete(personaSet);
+        }
+    }
+    
+    public void actualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+        PersonaList personaList = new PersonaList();
+        PersonaSet personaSet = new PersonaSet();
+        if(sesion.getAttribute("tipoModelo").equals("list")){
+            personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+            request.setAttribute("personas", personaList);
+        }else{
+            personaSet = (PersonaSet)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+            request.setAttribute("personas", personaSet);
+        }
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

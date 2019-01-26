@@ -27,7 +27,7 @@
                 </c:forEach>
             </ul>
             <br />
-            <p><a href="${contexto}" class="enlace">Men&uacute; inicial</a></p>
+            <p><a href="JSP/subIndex.jsp" class="enlace">Men&uacute; inicial</a></p>
         </div>
 
 

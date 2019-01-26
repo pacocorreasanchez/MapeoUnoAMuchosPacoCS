@@ -2,17 +2,23 @@ package es.albarregas.controllers;
 
 import es.albarregas.beans.Libro;
 import es.albarregas.beans.PersonaList;
+import es.albarregas.beans.PersonaSet;
 import es.albarregas.daofactory.DAOFactory;
 import es.albarregas.dao.IGenericoDAO;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.security.Provider;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -37,28 +43,62 @@ public class Conclusion extends HttpServlet {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IGenericoDAO gdao = daof.getGenericoDAO();
 
-        Libro libro = new Libro();
-        PersonaList persona = new PersonaList();
+        HttpSession sesion = request.getSession();
 
         String url = null;
 
         switch (request.getParameter("op")) {
             case "update":
-                /*puerto = (Puerto) gdao.getOne(puerto.getClass(), Long.parseLong(request.getParameter("id")));
-                servicio = (Servicio) gdao.getOne(servicio.getClass(), Long.parseLong(request.getParameter("id")));
-                
-                servicio.setNombre(request.getParameter("nombre"));
-                servicio.setPath(request.getParameter("path"));
-                puerto.setNumero(Integer.parseInt(request.getParameter("numero")));
-                puerto.setTipo(request.getParameter("tipo"));
-                
-                gdao.update(puerto);
-                gdao.update(servicio);*/
-                url = "index.html";
+                finActualizar(sesion, gdao, request);
+                url = "JSP/subIndex.html";
                 break;
         }
 
         request.getRequestDispatcher(url).forward(request, response);
+    }
+    
+    public void finActualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+        Libro libro = new Libro();
+        //puerto = (Puerto) gdao.getOne(puerto.getClass(), Long.parseLong(request.getParameter("id")));
+                
+        
+        if(sesion.getAttribute("tipoModelo").equals("list")){
+            List<Libro> libros = new ArrayList<>();
+            PersonaList personaList = new PersonaList();
+            personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("id")));
+            personaList.setNombre(request.getParameter("nombre"));
+            libro.setTitulo(request.getParameter("libro1"));
+            libros.add(libro);
+            
+            libro = new Libro();
+            libro.setTitulo(request.getParameter("libro2"));           
+            libros.add(libro);
+            
+            libro = new Libro();
+            libro.setTitulo(request.getParameter("libro3"));
+            libros.add(libro);
+            
+            personaList.setLibros(libros);
+            gdao.update(personaList);
+        }else{
+            Set<Libro> libros = new HashSet<>();
+            PersonaSet personaSet = new PersonaSet();
+            personaSet = (PersonaSet)gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("id")));
+            personaSet.setNombre(request.getParameter("nombre"));
+            libro.setTitulo(request.getParameter("libro1"));
+            libros.add(libro);
+            
+            libro = new Libro();
+            libro.setTitulo(request.getParameter("libro2"));           
+            libros.add(libro);
+            
+            libro = new Libro();
+            libro.setTitulo(request.getParameter("libro3"));
+            libros.add(libro);
+            
+            personaSet.setLibros(libros);
+            gdao.update(personaSet);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

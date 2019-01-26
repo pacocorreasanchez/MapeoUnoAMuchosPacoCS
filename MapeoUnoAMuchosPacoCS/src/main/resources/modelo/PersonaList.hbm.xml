@@ -8,7 +8,7 @@
     <property name="nombre">
       <column length="30" name="nombre" not-null="true"/>
     </property>
-    <list cascade="all" name="libros">
+    <list name="libros" cascade="all" inverse="false" lazy="false" fetch="join">
       <key>
         <column name="personaId"/>
       </key>

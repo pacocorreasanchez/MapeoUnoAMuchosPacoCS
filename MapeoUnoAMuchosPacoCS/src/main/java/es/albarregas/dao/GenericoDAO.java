@@ -40,7 +40,7 @@ public class GenericoDAO implements IGenericoDAO {
             listado = sesion.createQuery(" from " + entidad).list();
             sesion.getTransaction().commit();
 
-            Iterator it = listado.iterator();
+            /*Iterator it = listado.iterator();
             if (entidad.equals("PersonaList")) {
                 while (it.hasNext()) {
                     PersonaList personaList = (PersonaList) it.next();
@@ -51,7 +51,7 @@ public class GenericoDAO implements IGenericoDAO {
                     PersonaSet personaSet = (PersonaSet) it.next();
                     personaSet.getLibros().size();
                 }
-            }
+            }*/
 
         } catch (org.hibernate.JDBCException jdbce) {
             if (sesion != null) {

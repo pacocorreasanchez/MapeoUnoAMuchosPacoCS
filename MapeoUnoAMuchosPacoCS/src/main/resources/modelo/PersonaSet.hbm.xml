@@ -8,7 +8,7 @@
     <property name="nombre">
       <column length="30" name="nombre" not-null="true"/>
     </property>
-    <set cascade="all" name="libros">
+    <set cascade="all" name="libros" inverse="false" lazy="false" fetch="join">
       <key>
         <column name="personaId"/>
       </key>
