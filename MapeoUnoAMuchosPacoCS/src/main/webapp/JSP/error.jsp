@@ -5,18 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="${estilos}" />
         <title>error</title>
     </head>
     <body>
-    <c:set var = "error" scope = "application" value = "${listaPersonas}"/>   
+    <center>
+        <div id="pagError">
+            <h1 id="error">Ha ocurrido un error in-desesperado </h1>
+            <h1>(屮◉◞益◟◉)屮</h1>
+            <p>Por favor vuelve a la página pricipal</p>
+            <p>(; ・_・)―――――――C> <a href="${contexto}" class="enlace">Men&uacute; inicial</a></p>
+        </div>
+    </center>
 
-    <c:if test = "${error == null}">
-        <p id="error">No hay registros disponibles<p>
-    </c:if>
+
 </body>
 </html>

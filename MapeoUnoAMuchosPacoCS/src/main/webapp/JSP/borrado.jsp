@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Borrado</title>
-        <link rel="stylesheet" type="text/css" href="${contexto}/CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="${estilos}" />
     </head>
     <body>
 
@@ -19,6 +19,9 @@
 
             <form method="post" action="control?op=delete">
                 <table>
+                    <c:if test = "${listaPersonas == null || listaPersonas.size() < 0}">
+                        <h1>No hay registros en la tabla</h1>
+                    </c:if>
                     <c:forEach var="item" items="${listaPersonas}">
                         <tr>
                             <td><input type="radio" name="registro" value="${item.idPersona}" /></td>

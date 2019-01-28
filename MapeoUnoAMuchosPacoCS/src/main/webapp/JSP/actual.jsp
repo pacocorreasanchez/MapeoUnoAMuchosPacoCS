@@ -8,13 +8,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar</title>
-        <link rel="stylesheet" type="text/css" href="${contexto}/CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="${estilos}" />
     </head>
     <body>
 
         <div id="principal">
             <h2>Elige uno para modificar</h2>
-
+            <c:if test = "${listaPersonas == null || listaPersonas.size() < 0}">
+                <h1>No hay registros en la tabla</h1>
+            </c:if>
 
 
             <form method="post" action="control?op=update">

@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar</title>
-        <link rel="stylesheet" type="text/css" href="${contexto}/CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="${estilos}" />
     </head>
     <body>
 

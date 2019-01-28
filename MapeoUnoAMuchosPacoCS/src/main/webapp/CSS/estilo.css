@@ -124,7 +124,7 @@ div#principal table td, div#principal table th {
 div.resuelto {
     display: none;
     margin: 10px 0px;
-    
+
 }
 li ol {
     list-style-type: lower-latin;
@@ -147,6 +147,14 @@ div#principal div.b1, div#principal div.b2 {
     width: 50%;
     text-align: center;
 }
+#pagError{
+    background-color: white;
+}
 #error{
-    color: red;
+    color: black;
+}
+
+ul pre{
+    border: 2px solid black;
+    border-radius: 25px;
 }
