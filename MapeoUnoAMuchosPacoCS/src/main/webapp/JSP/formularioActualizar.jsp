@@ -35,12 +35,19 @@
                         <legend>Libros: </legend>
                         <c:forEach var="libro" varStatus="contador" items="${personas.libros}">
                             <tr>
-                            <input type="hidden" name="idLibro${contador.index + 1} value="${libro.idLibro}"/>
-                                <td>Libro ${contador.index + 1}: </td>
-                                <td><input type="text" name="libro${contador.index + 1}" value="${libro.titulo}"/></td>
+                            <input type="hidden" name="idLibro${contador.index + 1}" value="${libro.idLibro}"/>
+                            <td>Libro ${contador.index + 1}: </td>
+                            <td><input type="text" name="libro${contador.index + 1}" value="${libro.titulo}"/></td>
                             </tr>
                         </c:forEach>
 
+                            <!--Este forEach añade campos vacios para insertar nuevos libros, tantos como haga falta para llegas a 3-->
+                        <c:forEach var="contador" begin="1" end="${3 - (personas.libros.size())}">		    
+                            <tr>
+                                <td>Libro ${personas.libros.size()+contador}</td>
+                                <td><input type="text" name="libro${personas.libros.size()+contador}"/></td>
+                            </tr>
+                        </c:forEach>
 
 
                     </fieldset>

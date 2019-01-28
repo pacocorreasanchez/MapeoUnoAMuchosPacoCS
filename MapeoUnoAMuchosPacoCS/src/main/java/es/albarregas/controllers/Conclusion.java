@@ -66,7 +66,7 @@ public class Conclusion extends HttpServlet {
             personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("id")));
             personaList.setNombre(request.getParameter("nombre"));
             if (request.getParameter("libro1") != null) {
-                if(request.getParameter("idLibro1") != null){
+                if(request.getParameter("idLibro1") != null && request.getParameter("libro1").length() > 0){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro1")));
                 }else{
                     libro = new Libro();
@@ -76,7 +76,7 @@ public class Conclusion extends HttpServlet {
             }
 
             if (request.getParameter("libro2") != null) {
-                if(request.getParameter("idLibro2") != null){
+                if(request.getParameter("idLibro2") != null && request.getParameter("libro2").length() > 0){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro2")));
                 }else{
                     libro = new Libro();
@@ -86,7 +86,7 @@ public class Conclusion extends HttpServlet {
             }
 
             if (request.getParameter("libro3") != null) {
-                if(request.getParameter("idLibro3") != null){
+                if(request.getParameter("idLibro3") != null && request.getParameter("libro3").length() > 0){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro3")));
                 }else{
                     libro = new Libro();
@@ -103,7 +103,7 @@ public class Conclusion extends HttpServlet {
             personaSet = (PersonaSet)gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("id")));
             personaSet.setNombre(request.getParameter("nombre"));
             if (request.getParameter("libro1") != null) {
-                if(request.getParameter("idLibro1") != null){
+                if(request.getParameter("idLibro1") != null && request.getParameter("libro1").length() > 0){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro1")));
                 }else{
                     libro = new Libro();
@@ -113,7 +113,7 @@ public class Conclusion extends HttpServlet {
             }
 
             if (request.getParameter("libro2") != null) {
-                if(request.getParameter("idLibro2") != null){
+                if(request.getParameter("idLibro2") != null && request.getParameter("libro2").length() > 0){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro2")));
                 }else{
                     libro = new Libro();
@@ -122,7 +122,7 @@ public class Conclusion extends HttpServlet {
                 libros.add(libro);
             }
 
-            if (request.getParameter("libro3") != null) {
+            if (request.getParameter("libro3") != null && request.getParameter("libro3").length() > 0) {
                 if(request.getParameter("idLibro3") != null){
                     libro = (Libro)gdao.getOne(libro.getClass(), Long.parseLong(request.getParameter("idLibro3")));
                 }else{

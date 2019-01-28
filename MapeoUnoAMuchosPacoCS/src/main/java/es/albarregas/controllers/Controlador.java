@@ -69,18 +69,18 @@ public class Controlador extends HttpServlet {
             List<Libro> libros = new ArrayList<>();
             PersonaList persona = new PersonaList();
             persona.setNombre(request.getParameter("nombre"));
-            if (request.getParameter("libro1") != null) {
+            if (request.getParameter("libro1") != null && request.getParameter("libro1").length() > 0) {
                 libro.setTitulo(request.getParameter("libro1"));
                 libros.add(libro);
             }
 
-            if (request.getParameter("libro2") != null) {
+            if (request.getParameter("libro2") != null && request.getParameter("libro2").length() > 0) {
                 libro = new Libro();
                 libro.setTitulo(request.getParameter("libro2"));
                 libros.add(libro);
             }
 
-            if (request.getParameter("libro3") != null) {
+            if (request.getParameter("libro3") != null && request.getParameter("libro3").length() > 0) {
                 libro = new Libro();
                 libro.setTitulo(request.getParameter("libro3"));
                 libros.add(libro);
@@ -92,18 +92,18 @@ public class Controlador extends HttpServlet {
             Set<Libro> libros = new HashSet<>();
             PersonaSet persona = new PersonaSet();
             persona.setNombre(request.getParameter("nombre"));
-            if (request.getParameter("libro1") != null) {
+            if (request.getParameter("libro1") != null && request.getParameter("libro1").length() > 0) {
                 libro.setTitulo(request.getParameter("libro1"));
                 libros.add(libro);
             }
 
-            if (request.getParameter("libro2") != null) {
+            if (request.getParameter("libro2") != null && request.getParameter("libro2").length() > 0) {
                 libro = new Libro();
                 libro.setTitulo(request.getParameter("libro2"));
                 libros.add(libro);
             }
 
-            if (request.getParameter("libro3") != null) {
+            if (request.getParameter("libro3") != null && request.getParameter("libro3").length() > 0) {
                 libro = new Libro();
                 libro.setTitulo(request.getParameter("libro3"));
                 libros.add(libro);
