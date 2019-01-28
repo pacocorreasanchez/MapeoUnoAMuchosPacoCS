@@ -14,7 +14,6 @@
         <title>Index</title>
     </head>
     <body>
-    <center>
         
         <div id="principal">
             <h2>Elige una opción:</h2>
@@ -24,7 +23,7 @@
                 <li><a href="${contexto}/eleccion?op=delete" class="enlace">Baja</a></li>
                 <li><a href="${contexto}/eleccion?op=update" class="enlace">Actualización</a></li>
             </ol>
+            <p><a href="${contexto}/index.jsp" class="enlace">Men&uacute; inicial</a></p>
         </div>
-    </center>
 </body>
 </html>
