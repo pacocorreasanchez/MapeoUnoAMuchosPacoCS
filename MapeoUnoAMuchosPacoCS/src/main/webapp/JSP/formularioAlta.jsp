@@ -45,7 +45,6 @@
 
                     </fieldset>
                     <tr>
-
                         <td colspan="2"><input type="submit" name="enviar" value="Enviar" class="boton" /></td>
                     </tr>
                 </table>

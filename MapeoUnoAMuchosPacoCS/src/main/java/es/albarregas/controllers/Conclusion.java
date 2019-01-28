@@ -50,7 +50,7 @@ public class Conclusion extends HttpServlet {
         switch (request.getParameter("op")) {
             case "update":
                 finActualizar(sesion, gdao, request);
-                url = "JSP/subIndex.html";
+                url = "JSP/subIndex.jsp";
                 break;
         }
 
@@ -59,24 +59,28 @@ public class Conclusion extends HttpServlet {
     
     public void finActualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
         Libro libro = new Libro();
-        //puerto = (Puerto) gdao.getOne(puerto.getClass(), Long.parseLong(request.getParameter("id")));
-                
         
         if(sesion.getAttribute("tipoModelo").equals("list")){
             List<Libro> libros = new ArrayList<>();
             PersonaList personaList = new PersonaList();
             personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("id")));
             personaList.setNombre(request.getParameter("nombre"));
-            libro.setTitulo(request.getParameter("libro1"));
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro2"));           
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro3"));
-            libros.add(libro);
+            if (request.getParameter("libro1") != null) {
+                libro.setTitulo(request.getParameter("libro1"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro2") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro2"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro3") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro3"));
+                libros.add(libro);
+            }
             
             personaList.setLibros(libros);
             gdao.update(personaList);
@@ -85,16 +89,22 @@ public class Conclusion extends HttpServlet {
             PersonaSet personaSet = new PersonaSet();
             personaSet = (PersonaSet)gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("id")));
             personaSet.setNombre(request.getParameter("nombre"));
-            libro.setTitulo(request.getParameter("libro1"));
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro2"));           
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro3"));
-            libros.add(libro);
+            if (request.getParameter("libro1") != null) {
+                libro.setTitulo(request.getParameter("libro1"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro2") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro2"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro3") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro3"));
+                libros.add(libro);
+            }
             
             personaSet.setLibros(libros);
             gdao.update(personaSet);

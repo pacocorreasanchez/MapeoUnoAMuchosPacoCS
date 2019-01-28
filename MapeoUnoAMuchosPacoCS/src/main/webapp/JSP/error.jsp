@@ -9,9 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="/CSS/estilo.css" />
+        <title>error</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+    <c:set var = "error" scope = "application" value = "${listaPersonas}"/>   
+
+    <c:if test = "${error == null}">
+        <p id="error">No hay registros disponibles<p>
+    </c:if>
+</body>
 </html>

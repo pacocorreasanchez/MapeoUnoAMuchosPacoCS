@@ -34,18 +34,13 @@
                 <table>
                     <fieldset>
                         <legend>Libros: </legend>
-                        <tr>
-                            <td>Libro 1</td>
-                            <td><input type="text" name="libro1" value="${personas.libros[0].titulo}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Libro 2</td>
-                            <td><input type="text" name="libro2" value="${personas.libros[1].titulo}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Libro 3</td>
-                            <td><input type="text" name="libro3" value="${personas.libros[2].titulo}"/></td>
-                        </tr>
+                        <c:forEach var="libro" varStatus="contador" items="${personas.libros}">
+                            <tr>
+                                <td>Libro ${contador.index + 1}: </td>
+                                <td><input type="text" name="libro${contador.index + 1}" value="${libro.titulo}"/></td>
+                            </tr>
+                        </c:forEach>
+
 
 
                     </fieldset>

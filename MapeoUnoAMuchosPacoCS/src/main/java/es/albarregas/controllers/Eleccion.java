@@ -49,9 +49,8 @@ public class Eleccion extends HttpServlet {
         if(request.getParameter("opSL")!=null){
             operacion = "";
             sesion.setAttribute("tipoModelo", request.getParameter("opSL"));
-            url="JSP/subIndex.html";
+            url="JSP/subIndex.jsp";
         }
-
         switch (operacion) {
             case "add":
                 url = "JSP/formularioAlta.jsp";
@@ -62,8 +61,6 @@ public class Eleccion extends HttpServlet {
                 listar(sesion, gdao, request);
                 break;
         }
-        
-        
 
         switch (operacion) {
             case "list":
@@ -76,6 +73,7 @@ public class Eleccion extends HttpServlet {
                 url = "JSP/actual.jsp";
                 break;
         }
+        
         request.getRequestDispatcher(url).forward(request, response);
     }
     

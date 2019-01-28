@@ -37,98 +37,106 @@ public class Controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         DAOFactory daof = DAOFactory.getDAOFactory();
         IGenericoDAO gdao = daof.getGenericoDAO();
-        
+
         HttpSession sesion = request.getSession();
         String url = null;
-        
+
         switch (request.getParameter("op")) {
             case "add":
                 insertar(sesion, gdao, request);
-                url = "JSP/subIndex.html";
+                url = "JSP/subIndex.jsp";
                 break;
             case "delete":
                 eliminar(sesion, gdao, request);
-                url = "JSP/subIndex.html";
+                url = "JSP/subIndex.jsp";
                 break;
             case "update":
                 actualizar(sesion, gdao, request);
                 url = "JSP/formularioActualizar.jsp";
                 break;
-                
-                
         }
-        
+
         request.getRequestDispatcher(url).forward(request, response);
     }
-    
-    public void insertar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+
+    public void insertar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
         Libro libro = new Libro();
-        
-        if(sesion.getAttribute("tipoModelo").equals("list")){
+
+        if (sesion.getAttribute("tipoModelo").equals("list")) {
             List<Libro> libros = new ArrayList<>();
             PersonaList persona = new PersonaList();
             persona.setNombre(request.getParameter("nombre"));
-            libro.setTitulo(request.getParameter("libro1"));
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro2"));           
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro3"));
-            libros.add(libro);
-            
+            if (request.getParameter("libro1") != null) {
+                libro.setTitulo(request.getParameter("libro1"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro2") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro2"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro3") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro3"));
+                libros.add(libro);
+            }
+
             persona.setLibros(libros);
             gdao.add(persona);
-        }else{
+        } else {
             Set<Libro> libros = new HashSet<>();
             PersonaSet persona = new PersonaSet();
             persona.setNombre(request.getParameter("nombre"));
-            libro.setTitulo(request.getParameter("libro1"));
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro2"));           
-            libros.add(libro);
-            
-            libro = new Libro();
-            libro.setTitulo(request.getParameter("libro3"));
-            libros.add(libro);
-            
+            if (request.getParameter("libro1") != null) {
+                libro.setTitulo(request.getParameter("libro1"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro2") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro2"));
+                libros.add(libro);
+            }
+
+            if (request.getParameter("libro3") != null) {
+                libro = new Libro();
+                libro.setTitulo(request.getParameter("libro3"));
+                libros.add(libro);
+            }
+
             persona.setLibros(libros);
             gdao.add(persona);
         }
     }
-    
-    public void eliminar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+
+    public void eliminar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
         PersonaList personaList = new PersonaList();
         PersonaSet personaSet = new PersonaSet();
-        if(sesion.getAttribute("tipoModelo").equals("list")){
-            personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+        if (sesion.getAttribute("tipoModelo").equals("list")) {
+            personaList = (PersonaList) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
             gdao.delete(personaList);
-        }else{
-            personaSet = (PersonaSet)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+        } else {
+            personaSet = (PersonaSet) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
             gdao.delete(personaSet);
         }
     }
-    
-    public void actualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
+
+    public void actualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
         PersonaList personaList = new PersonaList();
         PersonaSet personaSet = new PersonaSet();
-        if(sesion.getAttribute("tipoModelo").equals("list")){
-            personaList = (PersonaList)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+        if (sesion.getAttribute("tipoModelo").equals("list")) {
+            personaList = (PersonaList) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
             request.setAttribute("personas", personaList);
-        }else{
-            personaSet = (PersonaSet)gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+        } else {
+            personaSet = (PersonaSet) gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("registro")));
             request.setAttribute("personas", personaSet);
         }
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

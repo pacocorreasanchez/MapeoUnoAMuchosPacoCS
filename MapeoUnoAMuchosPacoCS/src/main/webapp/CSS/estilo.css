@@ -147,3 +147,6 @@ div#principal div.b1, div#principal div.b2 {
     width: 50%;
     text-align: center;
 }
+#error{
+    color: red;
+}

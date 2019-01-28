@@ -17,7 +17,7 @@ public class GenericoDAO implements IGenericoDAO {
         try {
             sesion = HibernateUtil.getSessionFactory().openSession();
             sesion.beginTransaction();
-            sesion.save(objeto);
+            sesion.saveOrUpdate(objeto);
             sesion.getTransaction().commit();
         } catch (org.hibernate.JDBCException jdbce) {
             if (sesion != null) {
