@@ -19,10 +19,9 @@
                 <table>
                     <fieldset>
                         <legend>Datos persona: </legend>
-                        <tr>
-                            <td>ID</td>
-                            <td><input type="text" name="id" value="${personas.idPersona}" readonly/></td>
-                        </tr>
+
+                        <input type="hidden" name="id" value="${personas.idPersona}" readonly/>
+
                         <tr>
                             <td>Nombre</td>
                             <td><input type="text" name="nombre" value="${personas.nombre}"/></td>
