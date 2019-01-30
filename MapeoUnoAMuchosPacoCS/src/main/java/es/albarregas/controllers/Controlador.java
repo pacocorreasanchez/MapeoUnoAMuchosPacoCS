@@ -1,7 +1,6 @@
 package es.albarregas.controllers;
 
 import es.albarregas.beans.Libro;
-import es.albarregas.beans.PersonaList;
 import es.albarregas.beans.PersonaSet;
 import es.albarregas.daofactory.DAOFactory;
 import es.albarregas.dao.IGenericoDAO;
@@ -65,30 +64,7 @@ public class Controlador extends HttpServlet {
     public void insertar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
         Libro libro = new Libro();
 
-        if (sesion.getAttribute("tipoModelo").equals("list")) {
-            List<Libro> libros = new ArrayList<>();
-            PersonaList persona = new PersonaList();
-            persona.setNombre(request.getParameter("nombre"));
-            if (request.getParameter("libro1") != null && request.getParameter("libro1").length() > 0) {
-                libro.setTitulo(request.getParameter("libro1"));
-                libros.add(libro);
-            }
-
-            if (request.getParameter("libro2") != null && request.getParameter("libro2").length() > 0) {
-                libro = new Libro();
-                libro.setTitulo(request.getParameter("libro2"));
-                libros.add(libro);
-            }
-
-            if (request.getParameter("libro3") != null && request.getParameter("libro3").length() > 0) {
-                libro = new Libro();
-                libro.setTitulo(request.getParameter("libro3"));
-                libros.add(libro);
-            }
-
-            persona.setLibros(libros);
-            gdao.add(persona);
-        } else {
+        if (sesion.getAttribute("tipoModelo").equals("set")) {
             Set<Libro> libros = new HashSet<>();
             PersonaSet persona = new PersonaSet();
             persona.setNombre(request.getParameter("nombre"));
@@ -115,24 +91,16 @@ public class Controlador extends HttpServlet {
     }
 
     public void eliminar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
-        PersonaList personaList = new PersonaList();
         PersonaSet personaSet = new PersonaSet();
-        if (sesion.getAttribute("tipoModelo").equals("list")) {
-            personaList = (PersonaList) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
-            gdao.delete(personaList);
-        } else {
-            personaSet = (PersonaSet) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
+        if (sesion.getAttribute("tipoModelo").equals("set")) {
+            personaSet = (PersonaSet) gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("registro")));
             gdao.delete(personaSet);
         }
     }
 
     public void actualizar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request) {
-        PersonaList personaList = new PersonaList();
         PersonaSet personaSet = new PersonaSet();
-        if (sesion.getAttribute("tipoModelo").equals("list")) {
-            personaList = (PersonaList) gdao.getOne(personaList.getClass(), Long.parseLong(request.getParameter("registro")));
-            request.setAttribute("personas", personaList);
-        } else {
+        if (sesion.getAttribute("tipoModelo").equals("set")) {
             personaSet = (PersonaSet) gdao.getOne(personaSet.getClass(), Long.parseLong(request.getParameter("registro")));
             request.setAttribute("personas", personaSet);
         }

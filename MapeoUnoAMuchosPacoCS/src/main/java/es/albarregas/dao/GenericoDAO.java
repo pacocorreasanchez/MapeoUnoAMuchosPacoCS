@@ -1,7 +1,5 @@
 package es.albarregas.dao;
 
-import es.albarregas.beans.PersonaList;
-import es.albarregas.beans.PersonaSet;
 import es.albarregas.persistencia.HibernateUtil;
 import java.util.Iterator;
 

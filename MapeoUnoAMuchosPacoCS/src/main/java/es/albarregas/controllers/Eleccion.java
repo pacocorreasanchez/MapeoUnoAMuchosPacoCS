@@ -5,7 +5,6 @@
  */
 package es.albarregas.controllers;
 
-import es.albarregas.beans.PersonaList;
 import es.albarregas.beans.PersonaSet;
 import es.albarregas.daofactory.DAOFactory;
 import es.albarregas.dao.IGenericoDAO;
@@ -78,16 +77,8 @@ public class Eleccion extends HttpServlet {
     }
     
     public void listar(HttpSession sesion, IGenericoDAO gdao, HttpServletRequest request){
-        if(sesion.getAttribute("tipoModelo").equals("list")){
-            String entidad = "PersonaList";
-            List<PersonaList> listaPersonaLists = new ArrayList<>();
-            List<Object> lista = gdao.get(entidad);
-            for(Object personaList : lista){
-                listaPersonaLists.add((PersonaList) personaList);
-            }
-            request.setAttribute("listaPersonas", listaPersonaLists);
-            
-        }else{
+        
+        if(sesion.getAttribute("tipoModelo").equals("set")){
             String entidad = "PersonaSet";
             List<PersonaSet> listaPersonaSet = new ArrayList<>();
             List<Object> lista = gdao.get(entidad);

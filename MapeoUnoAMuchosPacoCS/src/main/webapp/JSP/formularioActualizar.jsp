@@ -3,10 +3,14 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:set var="contexto" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="ROBOTS" content="NOARCHIVE"> 
+        <meta name="generator" content="NetBeans"> 
+        <meta name="referrer" content="always"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Actualizar</title>
         <link rel="stylesheet" type="text/css" href="${estilos}" />
     </head>
@@ -41,7 +45,7 @@
                             </tr>
                         </c:forEach>
 
-                            <!--Este forEach añade campos vacios para insertar nuevos libros, tantos como haga falta para llegas a 3-->
+                        <!--Este forEach añade campos vacios para insertar nuevos libros, tantos como haga falta para llegas a 3-->
                         <c:forEach var="contador" begin="1" end="${3 - (personas.libros.size())}">		    
                             <tr>
                                 <td>Libro ${personas.libros.size()+contador}</td>
